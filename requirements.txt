@@ -1,5 +1,0 @@
-streamlit
-pyyaml
-requests
-google-generativeai
-yt-dlp 
