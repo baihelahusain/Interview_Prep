@@ -81,7 +81,10 @@ def load_settings():
 GEMINI_API_KEY, YOUTUBE_API_KEY, GITHUB_API_URL, APP_TITLE = load_settings()
 
 # Configure the Gemini API client
-genai_client = genai.Client(api_key=GEMINI_API_KEY)
+genai_client = genai.Client(
+    api_key=GEMINI_API_KEY,
+    http_options={"base_url": "https://generativelanguage.googleapis.com"}
+)
 
 st.set_page_config(
     page_title=APP_TITLE,
@@ -469,10 +472,10 @@ def generate_company_overview(company, role):
     try:
         # Validate if company exists
         validation_response = genai_client.models.generate_content(
-            model="gemini-2.0-flash-001",
+            model="gemini-2.5-flash",
             contents=validation_prompt
         )
-        company_exists = "yes" in validation_response.text.lower()
+        company_exists = "yes" in (validation_response.text or "").lower()
         
         # If company doesn't seem to exist or is very obscure, provide appropriate message
         if not company_exists:
@@ -502,7 +505,7 @@ def generate_company_overview(company, role):
             model="gemini-2.0-flash",
             contents=prompt
         )
-        overview = response.text
+        overview = response.text or "No response generated."
         
         # Check if the response contains uncertainty indicators
         uncertainty_phrases = ["I don't have", "I cannot", "I'm not able", "insufficient information"]
