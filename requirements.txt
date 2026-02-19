@@ -1,0 +1,5 @@
+google-genai
+PyYAML
+requests
+streamlit
+yt-dlp

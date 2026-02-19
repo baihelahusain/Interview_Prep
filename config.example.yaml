@@ -1,0 +1,12 @@
+apis:
+  google:
+    api_key: "YOUR_GEMINI_API_KEY"
+  youtube:
+    api_key: "OPTIONAL_YOUTUBE_API_KEY"
+
+app:
+  title: "InterviewPrep Pro"
+
+sources:
+  github_api_url: "https://api.github.com"
+
