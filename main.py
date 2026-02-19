@@ -469,7 +469,7 @@ def generate_company_overview(company, role):
     try:
         # Validate if company exists
         validation_response = genai_client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=validation_prompt
         )
         company_exists = "yes" in validation_response.text.lower()
